@@ -64,9 +64,9 @@ const sessionOptions = {
     },
   };
 
-//app.get("/",(req,res)=>{
-  //  res.send("hi,i am root");
-//});
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 store.on("error",()=>{
   console.log("session store error",err);
 });
@@ -145,4 +145,7 @@ app.listen(8080,()=>{
     console.log("server is listening on 8080 port");
     
 });
+
+module.exports = app;
+
 
