@@ -10,6 +10,7 @@ const sampleListings = [
     price: 1500,
     location: "Malibu",
     country: "United States",
+    category: "Rooms",
   },
   {
     title: "Modern Loft in Downtown",
@@ -22,6 +23,7 @@ const sampleListings = [
     price: 1200,
     location: "New York City",
     country: "United States",
+    category: "Rooms",
   },
   {
     title: "Mountain Retreat",
@@ -34,6 +36,7 @@ const sampleListings = [
     price: 1000,
     location: "Aspen",
     country: "United States",
+    category: "Mountains",
   },
   {
     title: "Historic Villa in Tuscany",
@@ -41,11 +44,12 @@ const sampleListings = [
       "Experience the charm of Tuscany in this beautifully restored villa. Explore the rolling hills and vineyards.",
     image: {
       filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+      url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzx8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
     },
     price: 2500,
     location: "Florence",
     country: "Italy",
+    category: "Iconic cities",
   },
   {
     title: "Secluded Treehouse Getaway",
@@ -58,6 +62,7 @@ const sampleListings = [
     price: 800,
     location: "Portland",
     country: "United States",
+    category: "Camping",
   },
   {
     title: "Beachfront Paradise",
@@ -70,6 +75,7 @@ const sampleListings = [
     price: 2000,
     location: "Cancun",
     country: "Mexico",
+    category: "Pools",
   },
   {
     title: "Rustic Cabin by the Lake",
@@ -82,6 +88,7 @@ const sampleListings = [
     price: 900,
     location: "Lake Tahoe",
     country: "United States",
+    category: "Camping",
   },
   {
     title: "Luxury Penthouse with City Views",
@@ -94,6 +101,7 @@ const sampleListings = [
     price: 3500,
     location: "Los Angeles",
     country: "United States",
+    category: "Iconic cities",
   },
   {
     title: "Ski-In/Ski-Out Chalet",
@@ -106,6 +114,7 @@ const sampleListings = [
     price: 3000,
     location: "Verbier",
     country: "Switzerland",
+    category: "Arctic",
   },
   {
     title: "Safari Lodge in the Serengeti",
@@ -118,6 +127,7 @@ const sampleListings = [
     price: 4000,
     location: "Serengeti National Park",
     country: "Tanzania",
+    category: "Farms",
   },
   {
     title: "Historic Canal House",
@@ -130,6 +140,7 @@ const sampleListings = [
     price: 1800,
     location: "Amsterdam",
     country: "Netherlands",
+    category: "Iconic cities",
   },
   {
     title: "Private Island Retreat",
@@ -142,6 +153,7 @@ const sampleListings = [
     price: 10000,
     location: "Fiji",
     country: "Fiji",
+    category: "Trending",
   },
   {
     title: "Charming Cottage in the Cotswolds",
@@ -154,6 +166,7 @@ const sampleListings = [
     price: 1200,
     location: "Cotswolds",
     country: "United Kingdom",
+    category: "Rooms",
   },
   {
     title: "Historic Brownstone in Boston",
@@ -166,6 +179,7 @@ const sampleListings = [
     price: 2200,
     location: "Boston",
     country: "United States",
+    category: "Iconic cities",
   },
   {
     title: "Beachfront Bungalow in Bali",
@@ -178,6 +192,7 @@ const sampleListings = [
     price: 1800,
     location: "Bali",
     country: "Indonesia",
+    category: "Pools",
   },
   {
     title: "Mountain View Cabin in Banff",
@@ -190,6 +205,7 @@ const sampleListings = [
     price: 1500,
     location: "Banff",
     country: "Canada",
+    category: "Mountains",
   },
   {
     title: "Art Deco Apartment in Miami",
@@ -202,6 +218,7 @@ const sampleListings = [
     price: 1600,
     location: "Miami",
     country: "United States",
+    category: "Rooms",
   },
   {
     title: "Tropical Villa in Phuket",
@@ -214,6 +231,7 @@ const sampleListings = [
     price: 3000,
     location: "Phuket",
     country: "Thailand",
+    category: "Pools",
   },
   {
     title: "Historic Castle in Scotland",
@@ -226,6 +244,7 @@ const sampleListings = [
     price: 4000,
     location: "Scottish Highlands",
     country: "United Kingdom",
+    category: "Castles",
   },
   {
     title: "Desert Oasis in Dubai",
@@ -238,6 +257,7 @@ const sampleListings = [
     price: 5000,
     location: "Dubai",
     country: "United Arab Emirates",
+    category: "Trending",
   },
   {
     title: "Rustic Log Cabin in Montana",
@@ -250,6 +270,7 @@ const sampleListings = [
     price: 1100,
     location: "Montana",
     country: "United States",
+    category: "Mountains",
   },
   {
     title: "Beachfront Villa in Greece",
@@ -262,6 +283,7 @@ const sampleListings = [
     price: 2500,
     location: "Mykonos",
     country: "Greece",
+    category: "Pools",
   },
   {
     title: "Eco-Friendly Treehouse Retreat",
@@ -274,6 +296,7 @@ const sampleListings = [
     price: 750,
     location: "Costa Rica",
     country: "Costa Rica",
+    category: "Camping",
   },
   {
     title: "Historic Cottage in Charleston",
@@ -286,6 +309,7 @@ const sampleListings = [
     price: 1600,
     location: "Charleston",
     country: "United States",
+    category: "Rooms",
   },
   {
     title: "Modern Apartment in Tokyo",
@@ -298,6 +322,7 @@ const sampleListings = [
     price: 2000,
     location: "Tokyo",
     country: "Japan",
+    category: "Iconic cities",
   },
   {
     title: "Lakefront Cabin in New Hampshire",
@@ -310,6 +335,7 @@ const sampleListings = [
     price: 1200,
     location: "New Hampshire",
     country: "United States",
+    category: "Camping",
   },
   {
     title: "Luxury Villa in the Maldives",
@@ -322,6 +348,7 @@ const sampleListings = [
     price: 6000,
     location: "Maldives",
     country: "Maldives",
+    category: "Trending",
   },
   {
     title: "Ski Chalet in Aspen",
@@ -334,6 +361,7 @@ const sampleListings = [
     price: 4000,
     location: "Aspen",
     country: "United States",
+    category: "Arctic",
   },
   {
     title: "Secluded Beach House in Costa Rica",
@@ -346,7 +374,151 @@ const sampleListings = [
     price: 1800,
     location: "Costa Rica",
     country: "Costa Rica",
+    category: "Pools",
   },
+  {
+    title: "Chateau de Chambord",
+    description:
+      "Experience the pinnacle of French Renaissance architecture in this breathtaking heritage castle located in the heart of the Loire Valley.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1599806112354-67f8b5425a06?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 7500,
+    location: "Loire Valley",
+    country: "France",
+    category: "Castles",
+  },
+  {
+    title: "Medieval Fortress on the Hill",
+    description:
+      "Travel back in time to this spectacular medieval fortress. Wake up to sweeping views of the historic countryside and walk along stone ramparts.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1508849789987-4e5333c12b78?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 5200,
+    location: "Rhineland",
+    country: "Germany",
+    category: "Castles",
+  },
+  {
+    title: "Peaceful Lavender Farm Stay",
+    description:
+      "Relax and rejuvenate in a charming cottage surrounded by endless fields of lavender. Breathe in the crisp fresh air and enjoy slow country living.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1400,
+    location: "Provence",
+    country: "France",
+    category: "Farms",
+  },
+  {
+    title: "Organic Dairy Farm Cottage",
+    description:
+      "Get a taste of rural life at this beautiful working dairy farm. Perfect for families looking to interact with farm animals and enjoy fresh farm-to-table produce.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1100,
+    location: "Vermont",
+    country: "United States",
+    category: "Farms",
+  },
+  {
+    title: "Glass Igloo in Lapland",
+    description:
+      "Sleep under the magical dance of the Northern Lights in a beautifully heated glass igloo situated deep in the Arctic forest.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 6500,
+    location: "Rovaniemi",
+    country: "Finland",
+    category: "Arctic",
+  },
+  {
+    title: "Luxury Geodesic Desert Dome",
+    description:
+      "Enjoy a futuristic glamping experience in this luxury geodesic dome. Perfect for stargazing under crystal-clear night skies.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1528150359817-56d979e27b5f?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2200,
+    location: "Wadi Rum",
+    country: "Jordan",
+    category: "Domes",
+  },
+  {
+    title: "Ecotourism Rainforest Dome",
+    description:
+      "Immerse yourself in nature in a high-tech eco-dome located in the heart of the Costa Rican rainforest. Enjoy 360-degree jungle views.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1800,
+    location: "La Fortuna",
+    country: "Costa Rica",
+    category: "Domes",
+  },
+  {
+    title: "Cliffside Ocean-View Dome",
+    description:
+      "Wake up to the sound of breaking waves in this spectacular ocean-view geodesic dome perched high on the cliffs of Big Sur.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2800,
+    location: "Big Sur",
+    country: "United States",
+    category: "Domes",
+  },
+  {
+    title: "Victorian Heritage Bed & Breakfast",
+    description:
+      "Delight in classic Victorian elegance at this award-winning bed and breakfast. Includes a gourmet four-course morning feast prepared daily.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1500,
+    location: "Cape May",
+    country: "United States",
+    category: "Breakfast",
+  },
+  {
+    title: "Cozy Alpine B&B",
+    description:
+      "Nestled at the base of the mountains, this charming bed and breakfast offers cozy wood-paneled rooms and a traditional Swiss hot breakfast.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1300,
+    location: "Grindelwald",
+    country: "Switzerland",
+    category: "Breakfast",
+  },
+  {
+    title: "Seaside Garden Inn & Breakfast",
+    description:
+      "Relax in a lush floral garden overlooking the harbor. Enjoy a homemade breakfast featuring locally sourced fresh berries and pastries.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 1700,
+    location: "Victoria",
+    country: "Canada",
+    category: "Breakfast",
+  }
 ];
 
 module.exports = { data: sampleListings };

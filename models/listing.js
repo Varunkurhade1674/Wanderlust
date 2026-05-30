@@ -22,6 +22,11 @@ const listingSchema = new Schema({
       ref: "Review",
 },
 ],//for authorization purpose
+  category: {
+    type: String,
+    enum: ["Trending", "Rooms", "Iconic cities", "Mountains", "Castles", "Pools", "Camping", "Farms", "Arctic", "Domes", "Breakfast"],
+    required: true,
+  },
   owner:{
       type: Schema.Types.ObjectId,
       ref: "User",

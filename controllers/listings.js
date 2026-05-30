@@ -7,9 +7,18 @@ const geoCodingClient = mbxGeocoding({ accessToken: mapToken });
 
 //index route controller
 module.exports.index = async (req, res) => {
-  let allListings = await Listing.find({});
-  res.render("listings/index.ejs", { allListings , 
-    mapToken: process.env.MAP_TOKEN});
+  const { category } = req.query;
+  let allListings;
+  if (category) {
+    allListings = await Listing.find({ category: category });
+  } else {
+    allListings = await Listing.find({});
+  }
+  res.render("listings/index.ejs", { 
+    allListings, 
+    mapToken: process.env.MAP_TOKEN,
+    activeCategory: category
+  });
 };
 
 
