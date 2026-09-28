@@ -1,6 +1,6 @@
 {
-  "engines":{
-    "node": "22.14.0"
+  "engines": {
+    "node": ">=20.0.0"
   },
   "name": "major-main",
   "version": "1.0.0",

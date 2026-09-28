@@ -44,31 +44,35 @@ app.engine('ejs',ejsMate  );
 app.use(express.static(path.join(__dirname, "/public")));//to use static files
 
 
-const store = MongoStore.create ({
+const secret = process.env.SECRET || "thisshouldbeabettersecret!";
+
+const store = MongoStore.create({
   mongoUrl: dbUrl,
-  crypto:{
-    secret: process.env.SECRET ,
+  crypto: {
+    secret: secret,
   },
   touchAfter: 24 * 3600, //  updates after this time interval session
 });
+
+store.on("error", (err) => {
+  console.log("session store error", err);
+});
+
 //express session 
 const sessionOptions = {
   store,
-  secret :process.env.SECRET ,
-    resave:false, 
-    saveUninitialized:true,
-    cookie:{
-      expries : Date.now() +7 *60 *60 *1000,
-      maxAge : 7*24*60*60*1000,
-      httpOnlu : true,//for security purpose-to avoid cross scripting sites
-    },
-  };
+  secret: secret,
+  resave: false, 
+  saveUninitialized: true,
+  cookie: {
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true, //for security purpose-to avoid cross scripting sites
+  },
+};
 
 app.get("/", (req, res) => {
   res.redirect("/listings");
-});
-store.on("error",()=>{
-  console.log("session store error",err);
 });
 
 //express session and flash
@@ -141,10 +145,12 @@ app.use((err,req,res,next)=>{
 });
 
 
-app.listen(8080,()=>{
-    console.log("server is listening on 8080 port");
-    
-});
+const port = process.env.PORT || 8080;
+if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`server is listening on port ${port}`);
+  });
+}
 
 module.exports = app;
 

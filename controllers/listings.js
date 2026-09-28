@@ -1,8 +1,8 @@
 //in this we will store callbacks form the routes
 const Listing = require("../models/listing.js");
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
-const mapToken =  process.env.MAP_TOKEN;
-const geoCodingClient = mbxGeocoding({ accessToken: mapToken });
+const mapToken = process.env.MAP_TOKEN;
+const geoCodingClient = mapToken ? mbxGeocoding({ accessToken: mapToken }) : null;
 
 
 //index route controller
@@ -48,29 +48,32 @@ module.exports.showListing = async (req, res) => {
 
 //create route
 module.exports.createListing = async (req, res, next) => {
- let response = await geoCodingClient
- .forwardGeocode({
-  query: req.body.listing.location ,
-  limit: 1,
-})
-  .send();
+  let geometry = { type: "Point", coordinates: [77.2090, 28.6139] }; // default coordinates
+  if (geoCodingClient) {
+    try {
+      let response = await geoCodingClient
+        .forwardGeocode({
+          query: req.body.listing.location,
+          limit: 1,
+        })
+        .send();
+      if (response && response.body && response.body.features && response.body.features.length) {
+        geometry = response.body.features[0].geometry;
+      }
+    } catch (err) {
+      console.log("Geocoding error:", err.message);
+    }
+  }
 
-  //(response.body.features[0].geometry);//as feature is array we are willing to access geometry
-  //res.send("done!");
-  
   let url = req.file.path;
-  let filename =  req.file.filename;
-const newListing = new Listing(req.body.listing);
-// console.log(newListing);
-newListing.owner = req.user._id;
-newListing.image = {url , filename};
-//mapp 
-newListing.geometry = response.body.features[0].geometry;
+  let filename = req.file.filename;
+  const newListing = new Listing(req.body.listing);
+  newListing.owner = req.user._id;
+  newListing.image = { url, filename };
+  newListing.geometry = geometry;
 
-let savedListing =  await newListing.save();
-console.log(savedListing);
-
-await newListing.save();
+  let savedListing = await newListing.save();
+  console.log(savedListing);
   req.flash("success", "New Listing Created!!");
   res.redirect("/listings");
 };
