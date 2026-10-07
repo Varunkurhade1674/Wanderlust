@@ -490,15 +490,18 @@ body {
 
 /* Category Chip Badge */
 .category-chip-badge {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: var(--dark);
-  font-weight: 700;
-  font-size: 0.75rem;
-  border-radius: var(--radius-pill);
-  padding: 0.35rem 0.75rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1a1a1a !important;
+  --bs-badge-color: #1a1a1a !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 0.35rem 0.75rem !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  letter-spacing: 0.2px;
   z-index: 2;
 }
 
@@ -581,9 +584,10 @@ body {
 }
 
 .tax-pill {
-  background: #ffe8ec;
-  color: var(--primary);
-  font-weight: 600;
+  background: #ffe8ec !important;
+  color: var(--primary) !important;
+  --bs-badge-color: var(--primary) !important;
+  font-weight: 700 !important;
   font-size: 0.7rem;
   border-radius: var(--radius-pill);
 }
