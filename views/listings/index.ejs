@@ -1,161 +1,325 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<!--<h1>All listings</h1>
-<form method="GET" action="/listings/new">
-      <button>Create New Listing</button>
-    </form>-->
-    <style>
-#filters{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.filter-link{
-  text-decoration: none;
-  color: inherit;
-}
-.filter{
-  text-align: center;
-  margin-right: 2rem;
-  margin-top: 2rem;
-  opacity: 0.7;
-  padding-bottom: 0.2rem;
-  transition: all 0.2s ease;
-}
-.filter:hover{
-  opacity: 1;
-  cursor: pointer;
-}
-.filter.active {
-  opacity: 1;
-  border-bottom: 2px solid black;
-  font-weight: 600;
-}
-.filter p{
-  font-size: 0.8rem;
-  margin-bottom: 0;
-}
-.tax-info{
-  display: none;
-}
-.tax-toggle{
-  border: 1px solid black;
-  border-radius: 1rem;
-  height: 3.25rem;
-  padding: 1rem;
-  margin-left: 3rem;
-  display: flex;
-  align-items: center;
-}
-    </style>
-    <div id ="filters">
-      <a href="<%= activeCategory === 'Trending' ? '/listings' : '/listings?category=Trending' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Trending' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-fire"></i></div>
-          <p>Trending</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Rooms' ? '/listings' : '/listings?category=Rooms' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Rooms' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-bed"></i></div>
-          <p>Rooms</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Iconic cities' ? '/listings' : '/listings?category=Iconic cities' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Iconic cities' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-mountain-city"></i></div>
-          <p>Iconic cities</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Mountains' ? '/listings' : '/listings?category=Mountains' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Mountains' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-mountain"></i></div>
-          <p>Mountains</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Castles' ? '/listings' : '/listings?category=Castles' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Castles' ? 'active' : '' %>">
-          <div><i class="fa-brands fa-fort-awesome"></i></div>
-          <p>Castles</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Pools' ? '/listings' : '/listings?category=Pools' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Pools' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-person-swimming"></i></div>
-          <p>Pools</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Camping' ? '/listings' : '/listings?category=Camping' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Camping' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-campground"></i></div>
-          <p>Camping</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Farms' ? '/listings' : '/listings?category=Farms' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Farms' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-cow"></i></div>
-          <p>Farms</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Arctic' ? '/listings' : '/listings?category=Arctic' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Arctic' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-snowflake"></i></div>
-          <p>Arctic</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Domes' ? '/listings' : '/listings?category=Domes' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Domes' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-igloo"></i></div>
-          <p>Domes</p> 
-        </div>
-      </a>
-      <a href="<%= activeCategory === 'Breakfast' ? '/listings' : '/listings?category=Breakfast' %>" class="filter-link">
-        <div class="filter <%= activeCategory === 'Breakfast' ? 'active' : '' %>">
-          <div><i class="fa-solid fa-mug-saucer"></i></div>
-          <p>Breakfast</p> 
-        </div>
-      </a>
-      
-      <div class="tax-toggle">
-        <div class="form-check-reverse form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-          <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
-        </div>
+<div class="explore-page-wrapper">
+  <!-- Interactive Filters & Tax Toggle Section -->
+  <div class="filters-sticky-bar">
+    <div class="filters-carousel-container">
+      <button class="carousel-nav-btn prev-btn" id="scrollFilterLeft" aria-label="Scroll left">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <div id="filters" class="filters-scroll-track">
+        <a href="<%= activeCategory === 'Trending' ? '/listings' : '/listings?category=Trending' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Trending' ? 'active' : '' %>" data-category="Trending">
+            <div class="filter-icon"><i class="fa-solid fa-fire"></i></div>
+            <p>Trending</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Rooms' ? '/listings' : '/listings?category=Rooms' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Rooms' ? 'active' : '' %>" data-category="Rooms">
+            <div class="filter-icon"><i class="fa-solid fa-bed"></i></div>
+            <p>Rooms</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Iconic cities' ? '/listings' : '/listings?category=Iconic cities' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Iconic cities' ? 'active' : '' %>" data-category="Iconic cities">
+            <div class="filter-icon"><i class="fa-solid fa-mountain-city"></i></div>
+            <p>Iconic cities</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Mountains' ? '/listings' : '/listings?category=Mountains' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Mountains' ? 'active' : '' %>" data-category="Mountains">
+            <div class="filter-icon"><i class="fa-solid fa-mountain"></i></div>
+            <p>Mountains</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Castles' ? '/listings' : '/listings?category=Castles' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Castles' ? 'active' : '' %>" data-category="Castles">
+            <div class="filter-icon"><i class="fa-brands fa-fort-awesome"></i></div>
+            <p>Castles</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Pools' ? '/listings' : '/listings?category=Pools' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Pools' ? 'active' : '' %>" data-category="Pools">
+            <div class="filter-icon"><i class="fa-solid fa-person-swimming"></i></div>
+            <p>Pools</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Camping' ? '/listings' : '/listings?category=Camping' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Camping' ? 'active' : '' %>" data-category="Camping">
+            <div class="filter-icon"><i class="fa-solid fa-campground"></i></div>
+            <p>Camping</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Farms' ? '/listings' : '/listings?category=Farms' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Farms' ? 'active' : '' %>" data-category="Farms">
+            <div class="filter-icon"><i class="fa-solid fa-cow"></i></div>
+            <p>Farms</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Arctic' ? '/listings' : '/listings?category=Arctic' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Arctic' ? 'active' : '' %>" data-category="Arctic">
+            <div class="filter-icon"><i class="fa-solid fa-snowflake"></i></div>
+            <p>Arctic</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Domes' ? '/listings' : '/listings?category=Domes' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Domes' ? 'active' : '' %>" data-category="Domes">
+            <div class="filter-icon"><i class="fa-solid fa-igloo"></i></div>
+            <p>Domes</p> 
+          </div>
+        </a>
+
+        <a href="<%= activeCategory === 'Breakfast' ? '/listings' : '/listings?category=Breakfast' %>" class="filter-link">
+          <div class="filter <%= activeCategory === 'Breakfast' ? 'active' : '' %>" data-category="Breakfast">
+            <div class="filter-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+            <p>Breakfast</p> 
+          </div>
+        </a>
+      </div>
+
+      <button class="carousel-nav-btn next-btn" id="scrollFilterRight" aria-label="Scroll right">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Tax Toggle Widget -->
+    <div class="tax-toggle-box">
+      <div class="form-check form-switch tax-switch-wrap">
+        <input class="form-check-input tax-switch-input" type="checkbox" role="switch" id="taxSwitch">
+        <label class="form-check-label tax-switch-label" for="taxSwitch">
+          <span class="label-primary">Display total after taxes</span>
+          <span class="label-sub">Includes 18% GST</span>
+        </label>
       </div>
     </div>
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
-<% for(let listing of allListings) { %>
-    <a href="/listings/<%= listing._id %>" class="listing-link">
-<div class="card col listing-card">
-  <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" height="200rem" />
-  <div class="card-body">
-    <div class="card-img-overlay"></div>
-    <p class="card-text">
-       <b><%= listing.title %></b> <br>
-         &#8377;<%= listing.price.toLocaleString("en-IN")%>/night<br>
-         <i class ="tax-info"> &nbsp; &nbsp; +18% GST</i>
-    </p>
   </div>
-</div></a>
-    <% } %>  
+
+  <!-- Active Search/Filter Status Bar -->
+  <div class="results-header d-flex align-items-center justify-content-between my-3">
+    <div class="results-meta">
+      <span class="results-count" id="resultsCount"><%= allListings.length %> stays found</span>
+      <% if (activeCategory) { %>
+        <span class="badge rounded-pill active-filter-badge ms-2">
+          <%= activeCategory %>
+          <a href="/listings" class="ms-1 text-white text-decoration-none" title="Remove filter">&times;</a>
+        </span>
+      <% } %>
+      <% if (typeof searchQuery !== 'undefined' && searchQuery) { %>
+        <span class="badge rounded-pill active-filter-badge ms-2">
+          "<%= searchQuery %>"
+          <a href="/listings" class="ms-1 text-white text-decoration-none" title="Clear search">&times;</a>
+        </span>
+      <% } %>
     </div>
+  </div>
 
+  <!-- Listings Grid -->
+  <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 g-4" id="listingsContainer">
+    <% for(let listing of allListings) { %>
+      <div class="col listing-item" 
+           data-title="<%= listing.title ? listing.title.toLowerCase() : '' %>" 
+           data-location="<%= listing.location ? listing.location.toLowerCase() : '' %>" 
+           data-country="<%= listing.country ? listing.country.toLowerCase() : '' %>"
+           data-category="<%= listing.category ? listing.category.toLowerCase() : '' %>"
+           data-price="<%= listing.price || 0 %>">
+        
+        <div class="card h-100 listing-card border-0">
+          <div class="card-img-wrapper position-relative">
+            <a href="/listings/<%= listing._id %>" class="stretched-link">
+              <img 
+                src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e' %>" 
+                class="card-img-top modern-card-img" 
+                alt="<%= listing.title %>"
+                loading="lazy"
+              />
+            </a>
 
-    <script>
+            <!-- Category / Location Badge -->
+            <% if (listing.category) { %>
+              <span class="badge category-chip-badge position-absolute top-0 start-0 m-3">
+                <%= listing.category %>
+              </span>
+            <% } %>
 
-      let taxSwitch = document.getElementById("switchCheckDefault");
-      taxSwitch.addEventListener("click", ()=>{ 
-      let taxInfo = document.getElementsByClassName("tax-info");
-      for(info of taxInfo){
-        if(info.style.display != "inline"){
-            info.style.display = "inline";
+            <!-- Interactive Wishlist Heart Button -->
+            <button 
+              type="button" 
+              class="btn-wishlist position-absolute top-0 end-0 m-3" 
+              data-id="<%= listing._id %>"
+              title="Save to favorites"
+              aria-label="Save to favorites"
+            >
+              <i class="fa-regular fa-heart heart-icon"></i>
+            </button>
+          </div>
+
+          <div class="card-body p-3">
+            <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <h5 class="card-title listing-title mb-0 text-truncate" title="<%= listing.title %>">
+                  <%= listing.title %>
+                </h5>
+                <div class="listing-rating ms-2 flex-shrink-0">
+                  <i class="fa-solid fa-star star-filled"></i>
+                  <span>4.9</span>
+                </div>
+              </div>
+
+              <p class="listing-location text-muted mb-2 text-truncate">
+                <i class="fa-solid fa-location-dot me-1"></i><%= listing.location %>, <%= listing.country %>
+              </p>
+
+              <div class="listing-pricing">
+                <!-- Base Price -->
+                <span class="price-display base-price">
+                  <strong class="price-amount">&#8377;<%= Number(listing.price || 0).toLocaleString("en-IN") %></strong>
+                  <span class="price-period"> / night</span>
+                </span>
+
+                <!-- Total with Tax (shown when toggle is ON) -->
+                <span class="price-display total-price d-none">
+                  <strong class="price-amount text-primary-custom">&#8377;<%= Math.round((Number(listing.price || 0) * 1.18)).toLocaleString("en-IN") %></strong>
+                  <span class="price-period"> total / night</span>
+                  <span class="badge tax-pill ms-1">+18% GST</span>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    <% } %>  
+  </div>
+
+  <!-- Empty State (When no listings found) -->
+  <div id="noResultsState" class="empty-state text-center py-5 <%= allListings.length === 0 ? '' : 'd-none' %>">
+    <div class="empty-state-icon mb-3">
+      <i class="fa-solid fa-compass-drafting fa-3x"></i>
+    </div>
+    <h3>No destinations found</h3>
+    <p class="text-muted">Try adjusting your search criteria or explore other categories.</p>
+    <a href="/listings" class="btn btn-outline-dark rounded-pill px-4 mt-2">Clear all filters</a>
+  </div>
+</div>
+
+<script>
+  // 1. Tax Switch Toggle with Live Total Recalculation
+  const taxSwitch = document.getElementById("taxSwitch");
+  const basePrices = document.querySelectorAll(".base-price");
+  const totalPrices = document.querySelectorAll(".total-price");
+
+  if (taxSwitch) {
+    taxSwitch.addEventListener("change", function () {
+      const showTax = this.checked;
+      basePrices.forEach(el => el.classList.toggle("d-none", showTax));
+      totalPrices.forEach(el => el.classList.toggle("d-none", !showTax));
+    });
+  }
+
+  // 2. Interactive Wishlist Heart Button with LocalStorage Persistence
+  const wishlistKey = "wanderlust_favorites";
+  let favorites = JSON.parse(localStorage.getItem(wishlistKey) || "[]");
+
+  const wishlistButtons = document.querySelectorAll(".btn-wishlist");
+  wishlistButtons.forEach(btn => {
+    const listingId = btn.getAttribute("data-id");
+    const icon = btn.querySelector(".heart-icon");
+
+    if (favorites.includes(listingId)) {
+      icon.classList.remove("fa-regular");
+      icon.classList.add("fa-solid", "heart-active");
+      btn.classList.add("is-active");
+    }
+
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const isActive = favorites.includes(listingId);
+      if (isActive) {
+        favorites = favorites.filter(id => id !== listingId);
+        icon.classList.remove("fa-solid", "heart-active");
+        icon.classList.add("fa-regular");
+        btn.classList.remove("is-active");
+      } else {
+        favorites.push(listingId);
+        icon.classList.remove("fa-regular");
+        icon.classList.add("fa-solid", "heart-active");
+        btn.classList.add("is-active");
+
+        // trigger pulse animation
+        btn.classList.add("heart-pulse");
+        setTimeout(() => btn.classList.remove("heart-pulse"), 400);
+      }
+      localStorage.setItem(wishlistKey, JSON.stringify(favorites));
+    });
+  });
+
+  // 3. Category Filter Track Horizontal Scroll Navigation
+  const scrollLeftBtn = document.getElementById("scrollFilterLeft");
+  const scrollRightBtn = document.getElementById("scrollFilterRight");
+  const filtersTrack = document.getElementById("filters");
+
+  if (scrollLeftBtn && scrollRightBtn && filtersTrack) {
+    scrollLeftBtn.addEventListener("click", () => {
+      filtersTrack.scrollBy({ left: -260, behavior: "smooth" });
+    });
+    scrollRightBtn.addEventListener("click", () => {
+      filtersTrack.scrollBy({ left: 260, behavior: "smooth" });
+    });
+  }
+
+  // 4. Client-side Instant Live Search Filter
+  const liveSearchInput = document.getElementById("liveSearchInput");
+  const listingItems = document.querySelectorAll(".listing-item");
+  const noResultsState = document.getElementById("noResultsState");
+  const resultsCount = document.getElementById("resultsCount");
+
+  if (liveSearchInput && listingItems.length > 0) {
+    liveSearchInput.addEventListener("input", function () {
+      const term = this.value.trim().toLowerCase();
+      let matchCount = 0;
+
+      listingItems.forEach(item => {
+        const title = item.dataset.title || "";
+        const location = item.dataset.location || "";
+        const country = item.dataset.country || "";
+        const category = item.dataset.category || "";
+
+        const matches = !term || 
+                        title.includes(term) || 
+                        location.includes(term) || 
+                        country.includes(term) || 
+                        category.includes(term);
+
+        if (matches) {
+          item.classList.remove("d-none");
+          matchCount++;
+        } else {
+          item.classList.add("d-none");
         }
-        else{
-          info.style.display = "none";
+      });
+
+      if (resultsCount) {
+        resultsCount.textContent = `${matchCount} stays found`;
+      }
+
+      if (noResultsState) {
+        if (matchCount === 0) {
+          noResultsState.classList.remove("d-none");
+        } else {
+          noResultsState.classList.add("d-none");
         }
       }
-    
     });
-
-    </script>
-
+  }
+</script>

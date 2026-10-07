@@ -7,17 +7,26 @@ const geoCodingClient = mapToken ? mbxGeocoding({ accessToken: mapToken }) : nul
 
 //index route controller
 module.exports.index = async (req, res) => {
-  const { category } = req.query;
-  let allListings;
+  const { category, q } = req.query;
+  let filter = {};
   if (category) {
-    allListings = await Listing.find({ category: category });
-  } else {
-    allListings = await Listing.find({});
+    filter.category = category;
   }
+  if (q && q.trim()) {
+    const searchRegex = new RegExp(q.trim(), "i");
+    filter.$or = [
+      { title: searchRegex },
+      { location: searchRegex },
+      { country: searchRegex },
+      { category: searchRegex },
+    ];
+  }
+  const allListings = await Listing.find(filter);
   res.render("listings/index.ejs", { 
     allListings, 
     mapToken: process.env.MAP_TOKEN,
-    activeCategory: category
+    activeCategory: category,
+    searchQuery: q ? q.trim() : ""
   });
 };
 

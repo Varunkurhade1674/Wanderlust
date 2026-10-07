@@ -1,12 +1,37 @@
-<footer>
-    <div class="f-info">
-        <div class="f-info-socials"><i class="fa-brands fa-square-facebook"></i>
-        <i class="fa-brands fa-square-instagram"></i>
-    <i class="fa-brands fa-linkedin"></i></div>
-        <div class="f-info-brand"> &copy; WanderLust private Limited</div>
-        <div class="f-info-links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
+<footer class="modern-footer mt-auto border-top bg-white">
+  <div class="container py-4">
+    <div class="row align-items-center g-3">
+      <!-- Copyright & Brand -->
+      <div class="col-md-4 text-center text-md-start">
+        <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-1">
+          <i class="fa-regular fa-compass text-danger"></i>
+          <span class="fw-bold">Wanderlust, Inc.</span>
         </div>
+        <p class="text-muted small mb-0">&copy; <%= new Date().getFullYear() %> Wanderlust. All rights reserved.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-4 text-center">
+        <ul class="list-inline mb-0 footer-nav-links">
+          <li class="list-inline-item"><a href="/listings" class="text-secondary text-decoration-none small">Explore</a></li>
+          <li class="list-inline-item">&bull;</li>
+          <li class="list-inline-item"><a href="/privacy" class="text-secondary text-decoration-none small">Privacy</a></li>
+          <li class="list-inline-item">&bull;</li>
+          <li class="list-inline-item"><a href="/terms" class="text-secondary text-decoration-none small">Terms</a></li>
+          <li class="list-inline-item">&bull;</li>
+          <li class="list-inline-item"><a href="/listings/new" class="text-secondary text-decoration-none small">Become a Host</a></li>
+        </ul>
+      </div>
+
+      <!-- Socials & Locale -->
+      <div class="col-md-4 text-center text-md-end">
+        <div class="d-flex align-items-center justify-content-center justify-content-md-end gap-3 footer-social-icons">
+          <a href="#" class="social-icon-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
     </div>
+  </div>
 </footer>
