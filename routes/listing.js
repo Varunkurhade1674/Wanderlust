@@ -4,7 +4,7 @@ const Listing = require("../models/listing.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 //const ExpressError = require("../utils/ExpressError.js");
 //const { listingSchema } = require("../schema.js");
-const {isLoggedIn, isOwner,validateListing}= require("../middleware.js");
+const {isLoggedIn, isOwner,validateListing}= require("../expressMiddleware.js");
 //controllers required 
 const listingController = require("../controllers/listings.js");
 //multer  and upload
